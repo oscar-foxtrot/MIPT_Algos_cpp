@@ -1,3 +1,8 @@
+/* MergeSort is an algorithm for sorting an array
+Time complexity: O(n*log(n))
+Space complexity: O(n) */
+
+
 #include <memory>
 #include <cstddef>
 
