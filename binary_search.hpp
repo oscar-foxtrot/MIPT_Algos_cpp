@@ -1,7 +1,7 @@
 #include <iostream>
 
 /* Tell whether an element is in a SORTED array of elemets,
-for which operators < and == are defined,
+for which operators "<" and "==" are defined,
 using the binary search algorithm */
 template <typename T>
 bool find(const T& elem, const T* arr, ssize_t arr_length) {
