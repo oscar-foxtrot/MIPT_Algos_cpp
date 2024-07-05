@@ -1,6 +1,6 @@
 #include <iostream>
 
-/* Find an element in a SORTED array of elemets,
+/* Tell whether an element is in a SORTED array of elemets,
 for which operators < and == are defined,
 using the binary search algorithm */
 template <typename T>
