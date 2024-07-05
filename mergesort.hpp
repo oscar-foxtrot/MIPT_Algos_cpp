@@ -6,8 +6,7 @@ void merge(T*, size_t, T*, size_t);
 
 /* Sort an array of elements, for which the "<"" operator is defined,
 via MergeSort algorithm. The original array is modified.
-Order: ascending 
-Type: out-of-place mergesort */
+Order: ascending */
 template <typename T>
 void mergesort(T* arr, size_t arr_length) {
     if (arr_length == 1 or arr_length == 0) {
