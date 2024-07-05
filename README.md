@@ -1,4 +1,3 @@
-# MIPT_Algos_cpp
-Code pieces in C++ with some algorithms and data structures
+# Mipt Algorithms C++
 
-Ideas from the Algorithms and Data Structures course at MIPT
+Ideas from the Algorithms and Data Structures course at MIPT (Moscow Institute of Physics and Technology) implemented
