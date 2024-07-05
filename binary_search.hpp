@@ -1,5 +1,5 @@
 /* Binary Search is an algorithm for searching elements in a sorted array
-Complexity: O(log(n))
+Complexity: O(log(n)) */
 
 #include <cstddef>
 
