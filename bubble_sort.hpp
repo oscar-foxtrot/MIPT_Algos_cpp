@@ -7,9 +7,9 @@ Space complexity: O(1) */
 /* Swap two elements */
 template <typename T>
 void swap(T& a, T& b) {
-    T c = a;
-    a = b;
-    b = c;
+    T temp = std::move(a);
+    a = std::move(b);
+    b = std::move(temp);
 }
 
 /* Sort an array of elements, for which the "<"" operator is defined,
