@@ -7,6 +7,7 @@ Space complexity: O(1) */
 #include <cstddef>
 #include <utility>
 
+namespace quicksort_module {
 /* Choose the median element */
 template <typename T>
 T& median(T& a, T& b, T& c) {
@@ -59,6 +60,7 @@ size_t partition(T* arr, size_t arr_length) {
 
     return position_to_insert;
 }
+}
 
 /* Sort an array of elements, for which the "<"" operator is defined,
 via the QuickSort algorithm. The original array is modified.
@@ -69,7 +71,7 @@ void quicksort(T* arr, size_t arr_length) {
         return;
     }
     // partition the array. Get the dividing point index
-    size_t divider_pos = partition(arr, arr_length);
+    size_t divider_pos = quicksort_module::partition(arr, arr_length);
 
     // sort left
     quicksort(arr, divider_pos);
