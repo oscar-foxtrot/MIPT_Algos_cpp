@@ -2,7 +2,12 @@
 Time complexity: O(n^2) - Worst case: O(n^2)
 Space complexity: O(1) */
 
+#ifndef INSERTIONSORT_HPP
+#define INSERTIONSORT_HPP
+
 #include <cstddef>
+
+namespace BubbleSortModule {
 
 /* Swap two elements */
 template <typename T>
@@ -10,6 +15,8 @@ void swap(T& a, T& b) {
     T temp = std::move(a);
     a = std::move(b);
     b = std::move(temp);
+}
+
 }
 
 /* Sort an array of elements, for which the "<"" operator is defined,
@@ -22,9 +29,11 @@ void bubble_sort(T* arr, size_t arr_length) {
         swapped = false;
         for (size_t i = 1; i < arr_length; ++i) {
             if (arr[i] < arr[i - 1]) {
-                swap(arr[i], arr[i - 1]);
+                BubbleSortModule::swap(arr[i], arr[i - 1]);
                 swapped = true;
             }
         }
     } while (swapped);
 }
+
+#endif
