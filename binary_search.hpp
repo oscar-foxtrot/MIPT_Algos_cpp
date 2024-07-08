@@ -1,6 +1,9 @@
 /* Binary Search is an algorithm for searching elements in a sorted array
 Time complexity: O(log(n)) - Worst case: O(log(n)) */
 
+#ifndef BINARYSEARCH_HPP
+#define BINARYSEARCH_HPP
+
 #include <cstddef>
 
 /* Find an element in a SORTED array of elemets,
@@ -32,3 +35,5 @@ bool find(const T& elem, const T* arr, size_t arr_length) {
     }
     return false;
 }
+
+#endif
