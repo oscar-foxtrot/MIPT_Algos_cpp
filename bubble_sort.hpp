@@ -2,8 +2,8 @@
 Time complexity: O(n^2) - Worst case: O(n^2)
 Space complexity: O(1) */
 
-#ifndef INSERTIONSORT_HPP
-#define INSERTIONSORT_HPP
+#ifndef BUBBLESORT_HPP
+#define BUBBLESORT_HPP
 
 #include <cstddef>
 
