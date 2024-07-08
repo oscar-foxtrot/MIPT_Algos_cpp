@@ -2,7 +2,12 @@
 Time complexity: O(n^2) - Worst case: O(n^2)
 Space complexity: O(1) */
 
+#ifndef INSERTIONSORT_HPP
+#define INSERTIONSORT_HPP
+
 #include <cstddef>
+
+namespace InsertionSortModule {
 
 /* Move a chunk of an array 1 element forward */
 template <typename T>
@@ -10,6 +15,8 @@ void move_one_step_forward(T* begin, size_t length) {
     for (size_t i = length; i > 0; --i) {
         begin[i] = begin[i - 1];
     }
+}
+
 }
 
 /* Sort an array of elements, for which the "<"" operator is defined,
@@ -24,8 +31,10 @@ void insertion_sort(T* arr, size_t arr_length) {
                 --j;
             }
             T elem_to_insert = arr[i];
-            move_one_step_forward(arr + j, i - j);
+            InsertionSortModule::move_one_step_forward(arr + j, i - j);
             arr[j] = elem_to_insert;
         }
     }
 }
+
+#endif
