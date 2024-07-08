@@ -106,20 +106,18 @@ Note: order starts from 1 */
 template <typename T>
 
 T quickselect(T* arr, size_t arr_length, size_t k_order) {
-    // Allocate memory for a copy of the input array
     T* temp_arr = new T[arr_length];
     try {
         for (size_t i = 0; i < arr_length; ++i) {
             temp_arr[i] = arr[i];
         }
-        return QuickSelectModule::quickselect_subroutine(temp_arr, arr_length, k_order);
-    } catch (...) {
-        // Free memory in case of any exception
+        T result = QuickSelectModule::quickselect_subroutine(temp_arr, arr_length, k_order);
         delete[] temp_arr;
-        throw; // Re-throw the exception to propagate it further
+        return result;
+    } catch (...) {
+        delete[] temp_arr;
+        throw;
     }
-    // Clean up dynamically allocated memory
-    delete[] temp_arr;
 }
 
 #endif
