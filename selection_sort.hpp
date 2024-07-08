@@ -2,7 +2,12 @@
 Time complexity: O(n^2) - Worst case: O(n^2)
 Space complexity: O(1) */
 
+#ifndef SELECTIONSORT_HPP
+#define SELECTIONSORT_HPP
+
 #include <cstddef>
+
+namespace SelectionSortModule {
 
 /* Swap two elements (access by pointers) */
 template <typename T>
@@ -10,6 +15,8 @@ void swap(T* a, T* b) {
     T c = *a;
     *a = *b;
     *b = c;
+}
+
 }
 
 /* Sort an array of elements, for which the "<"" operator is defined,
@@ -25,7 +32,9 @@ void selection_sort(T* arr, size_t arr_length) {
             }
         }
         if (min_ptr != arr + i) {
-            swap(min_ptr, arr + i);
+            SelectionSortModule::swap(min_ptr, arr + i);
         }
     }
 }
+
+#endif
