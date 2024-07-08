@@ -4,10 +4,14 @@ There are multiple approaches to picking the so-called
 Time complexity: O(n*log(n)) - Worst case: O(n^2)
 Space complexity: O(1) */
 
+#ifndef QUICKSORT_HPP
+#define QUICKSORT_HPP
+
 #include <cstddef>
 #include <utility>
 
-namespace quicksort_module {
+namespace QuickSortModule {
+
 /* Choose the median element */
 template <typename T>
 T& median(T& a, T& b, T& c) {
@@ -60,6 +64,7 @@ size_t partition(T* arr, size_t arr_length) {
 
     return position_to_insert;
 }
+
 }
 
 /* Sort an array of elements, for which the "<"" operator is defined,
@@ -71,7 +76,7 @@ void quicksort(T* arr, size_t arr_length) {
         return;
     }
     // partition the array. Get the dividing point index
-    size_t divider_pos = quicksort_module::partition(arr, arr_length);
+    size_t divider_pos = QuickSortModule::partition(arr, arr_length);
 
     // sort left
     quicksort(arr, divider_pos);
@@ -79,3 +84,5 @@ void quicksort(T* arr, size_t arr_length) {
     // sort right
     quicksort(arr + divider_pos + 1, arr_length - divider_pos - 1);
 }
+
+#endif
