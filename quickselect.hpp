@@ -106,18 +106,11 @@ Note: order starts from 1 */
 template <typename T>
 
 T quickselect(T* arr, size_t arr_length, size_t k_order) {
-    T* temp_arr = new T[arr_length];
-    try {
-        for (size_t i = 0; i < arr_length; ++i) {
-            temp_arr[i] = arr[i];
-        }
-        T result = QuickSelectModule::quickselect_subroutine(temp_arr, arr_length, k_order);
-        delete[] temp_arr;
-        return result;
-    } catch (...) {
-        delete[] temp_arr;
-        throw;
+    std::unique_ptr<T[]> temp_arr = std::make_unique<T[]>(arr_length);
+    for (size_t i = 0; i < arr_length; ++i) {
+        temp_arr[i] = arr[i];
     }
+    return QuickSelectModule::quickselect_subroutine(temp_arr.get(), arr_length, k_order);
 }
 
 #endif
