@@ -1,27 +1,14 @@
 /* MergeSort is an algorithm for sorting an array
-Time complexity: O(n*log(n)) - Worst case: O(n*log(n))
+Time complexity: O(n*log(n))
 Space complexity: O(n) */
 
+#ifndef MERGESORT_HPP
+#define MERGESORT_HPP
 
 #include <memory>
 #include <cstddef>
 
-template <typename T>
-void merge(T*, size_t, T*, size_t);
-
-/* Sort an array of elements, for which the "<"" operator is defined,
-via MergeSort algorithm. The original array is modified.
-Order: ascending */
-template <typename T>
-void mergesort(T* arr, size_t arr_length) {
-    if (arr_length == 1 or arr_length == 0) {
-        return;
-    }
-    size_t midpoint = arr_length / 2;
-    mergesort(arr, midpoint);
-    mergesort(arr + midpoint, arr_length - midpoint);
-    merge(arr, midpoint, arr + midpoint, arr_length - midpoint);
-}
+namespace MergeSortModule {
 
 /* Merge procedure for sorted arrays */
 template <typename T>
@@ -60,3 +47,21 @@ void merge(T* arr_0, size_t arr_0_length, T* arr_1, size_t arr_1_length) {
         arr_1[i] = newarr[arr_0_length + i];
     }
 }
+
+}
+
+/* Sort an array of elements, for which the "<"" operator is defined,
+via MergeSort algorithm. The original array is modified.
+Order: ascending */
+template <typename T>
+void mergesort(T* arr, size_t arr_length) {
+    if (arr_length == 1 or arr_length == 0) {
+        return;
+    }
+    size_t midpoint = arr_length / 2;
+    mergesort(arr, midpoint);
+    mergesort(arr + midpoint, arr_length - midpoint);
+    MergeSortModule::merge(arr, midpoint, arr + midpoint, arr_length - midpoint);
+}
+
+#endif
