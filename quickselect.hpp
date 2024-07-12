@@ -105,7 +105,7 @@ A copy of the statistics is returned.
 Note: order starts from 1 */
 template <typename T>
 
-T quickselect(T* arr, size_t arr_length, size_t k_order) {
+T quickselect(const T* arr, size_t arr_length, size_t k_order) {
     std::unique_ptr<T[]> temp_arr = std::make_unique<T[]>(arr_length);
     for (size_t i = 0; i < arr_length; ++i) {
         temp_arr[i] = arr[i];
