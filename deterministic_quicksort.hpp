@@ -9,6 +9,7 @@ Space complexity: O(n) */
 
 #include <cstddef>
 #include <utility>
+#include <memory>
 
 #include "deterministic_quickselect.hpp"
 
