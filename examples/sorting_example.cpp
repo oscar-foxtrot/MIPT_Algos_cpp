@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 
 #define your_file "mergesort.hpp"
 #define your_sort mergesort
