@@ -6,6 +6,7 @@ Space complexity: O(k) */
 #define COUNTINGSORT_HPP
 
 #include <cstddef>
+#include <memory>
 
 /* Sort an array of *NON-NEGATIVE* *NUMBERS*
 via the Counting Sort (for numbers) algorithm. The original array is modified.
