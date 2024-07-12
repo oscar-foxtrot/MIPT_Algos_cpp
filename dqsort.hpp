@@ -11,7 +11,7 @@ Space complexity: O(n) */
 #include <utility>
 #include <memory>
 
-#include "deterministic_quickselect.hpp"
+#include "dqs.hpp"
 
 /* Sort an array of elements, for which the "<"" operator is defined,
 via the QuickSort algorithm. The original array is modified.
