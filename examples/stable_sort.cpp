@@ -4,8 +4,8 @@
 
 #include <iostream>
 
-#include "radix_sort.hpp"
-#include "mergesort.hpp"
+#include "../radix_sort.hpp"
+#include "../mergesort.hpp"
 
 class Pair {
 private:
