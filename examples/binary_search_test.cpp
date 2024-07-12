@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "binary_search.hpp"
+#include "binary_search_pointer.hpp"
 #include "quicksort.hpp"
 
 int main() {
@@ -14,6 +15,10 @@ int main() {
 
     for (int i = 0; i < test_arr_length; ++i) {
         std::cout << find<int>(test_array[i], arr, length) << ' ';
+    }
+    std::cout << std::endl;
+    for (int i = 0; i < test_arr_length; ++i) {
+        std::cout << find_pointer<int>(test_array[i], arr, length) << ' ';
     }
     std::cout << std::endl << std::endl;
     return 0;
