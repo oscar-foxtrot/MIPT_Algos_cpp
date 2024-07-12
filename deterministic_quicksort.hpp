@@ -2,7 +2,7 @@
 There are multiple approaches to picking the so-called
 "pivot" point. We'll be using the "median of 3" approach.
 Time complexity: O(n*log(n)) - Worst case: O(n*log(n))
-Space complexity: O(1) */
+Space complexity: O(n) */
 
 #ifndef DETERMINISTICQUICKSORT_HPP
 #define DETERMINISTICQUICKSORT_HPP
