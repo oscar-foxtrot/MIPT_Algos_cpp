@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "quickselect.hpp"
-#include "dqs.hpp"
+#include "../quickselect.hpp"
+#include "../dqs.hpp"
 
 int main() {
     int length = 17;
