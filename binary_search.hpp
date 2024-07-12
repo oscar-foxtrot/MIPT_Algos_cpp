@@ -16,10 +16,9 @@ bool find(const T& elem, const T* arr, size_t arr_length) {
     }
     size_t start = 0;
     size_t end = arr_length;
-    while (end - start > 1) {
+    while (end != start) {
         // Calculate the center of the array
         size_t midpoint = start + (end - start) / 2;
-        const T* pointer = arr + midpoint;
 
         // Localize the search space or terminate upon finding
         if (arr[midpoint] == elem) {
@@ -29,9 +28,6 @@ bool find(const T& elem, const T* arr, size_t arr_length) {
         } else {
             end = midpoint;
         }
-    }
-    if ((end != start) && (elem == arr[start])) {
-        return true;
     }
     return false;
 }
