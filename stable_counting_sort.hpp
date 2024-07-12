@@ -7,6 +7,7 @@ Space complexity: O(n + k) */
 
 #include <cstddef>
 #include <utility>
+#include <memory>
 
 /* Sort an array of *NON-NEGATIVE* *NUMBERS*
 via the Counting Sort (for numbers) algorithm.
