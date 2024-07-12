@@ -12,6 +12,7 @@ Space complexity: O(n) */
 #include <cstddef>
 #include <utility>
 #include <stdexcept>
+#include <memory>
 
 namespace QuickSelectModule {
 
