@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include "binary_search.hpp"
-#include "binary_search_pointer.hpp"
-#include "quicksort.hpp"
+#include "../binary_search.hpp"
+#include "../binary_search_pointer.hpp"
+#include "../quicksort.hpp"
 
 int main() {
     int length = 17;
