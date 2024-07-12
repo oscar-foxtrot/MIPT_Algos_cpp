@@ -1,8 +1,11 @@
-// Let's show that MergeSort is stable
+// Testing the stability of some sorting algorithms
+
+#define your_sort radix_sort
 
 #include <iostream>
 
-#include "../mergesort.hpp"
+#include "radix_sort.hpp"
+#include "mergesort.hpp"
 
 class Pair {
 private:
@@ -13,7 +16,12 @@ public:
     bool operator<(const Pair& other) const {
         return value < other.value;
     }
-
+    bool operator<(int other) const {
+        return value < other;
+    }
+    int operator/(int other) const {
+        return value / other;
+    }
     friend std::ostream& operator<<(std::ostream& os, const Pair& obj);
 };
 
@@ -30,7 +38,7 @@ int main() {
         Pair(0, 13), Pair(1, 14), Pair(2, 15), Pair(0, 16), Pair(1, 17), Pair(2, 18), Pair(0, 19), Pair(1, 20)};
     //for (int i = 0; i < length; ++i) std::cout << dqs(arr, length, i + 1) << ' ';
     //std::cout << std::endl << std::endl;
-    mergesort<Pair>(arr1, length);
+    your_sort(arr1, length);
     for (int i = 0; i < length; ++i) std::cout << arr1[i] << ' ';
     std::cout << std::endl << std::endl;
     return 0;
