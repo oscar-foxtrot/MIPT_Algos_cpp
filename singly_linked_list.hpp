@@ -1,4 +1,9 @@
-/* Simple implementation of singly- and doubly- linked lists */
+/* Simple implementation of singly-linked lists */
+
+#ifndef SINGLYLINKEDLIST_HPP
+#define SINGLYLINKEDLIST_HPP
+
+#include <iostream>
 
 template <typename T>
 class SinglyLinkedList {
@@ -56,3 +61,5 @@ std::ostream& operator<<(std::ostream& os, const SinglyLinkedList<T>& lst) {
     os << ")";
     return os;
 }
+
+#endif
