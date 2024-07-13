@@ -1,4 +1,6 @@
-/* Simple implementation of singly-linked lists */
+/* Simple implementation of singly-linked lists
+Limited functionality (for example, one can add a fucntion to delete an element in O(n).
+We omit all the unnecessary functionality for the sake of simplicity */
 
 #ifndef SINGLYLINKEDLIST_HPP
 #define SINGLYLINKEDLIST_HPP
