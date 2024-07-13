@@ -1,5 +1,8 @@
 /* Simple implementation of doubly-linked lists */
 
+#ifndef DOUBLYLINKEDLIST_HPP
+#define DOUBLYLINKEDLIST_HPP
+
 #include <iostream>
 
 template <typename T>
@@ -96,3 +99,5 @@ std::ostream& operator<<(std::ostream& os, const DoublyLinkedList<T>& lst) {
     os << ")";
     return os;
 }
+
+#endif
