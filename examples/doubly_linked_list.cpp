@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "..//doubly_linked_list.hpp"
+#include "../doubly_linked_list.hpp"
 
 int main() {
     DoublyLinkedList<int> lst;
