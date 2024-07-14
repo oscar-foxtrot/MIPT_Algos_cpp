@@ -41,7 +41,7 @@ public:
     template <typename U>
     friend std::ostream& operator<<(std::ostream& os, const SinglyLinkedList<U>& lst);
 
-private:
+protected:
     struct Node {
         T value;
         Node* next;
@@ -49,7 +49,7 @@ private:
     };
 
     Node* head; // Natural order preserved
-    Node* tail; // insertion - O(1)
+    Node* tail; // O(1) insertion at the end
 };
 
 template <typename T>
