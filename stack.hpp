@@ -1,4 +1,4 @@
-/* Simple implementation of a stack (singly-linked list variation) */
+/* An implementation of a stack (singly-linked list variation) */
 
 #include <iostream>
 #include <exception>
