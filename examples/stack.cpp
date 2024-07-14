@@ -11,8 +11,8 @@ int main() {
     std::cout << "Popped element: " << stack.pop() << std::endl;
     std::cout << stack << std::endl;
     stack.pop();
-    std::cout << stack << std::endl;
+    std::cout << stack << ' ' << "Status: " << (stack.empty() ? "Empty" : "Not empty") << std::endl;
     stack.pop();
-    std::cout << stack;
+    std::cout << stack << ' ' << "Status: " << (stack.empty() ? "Empty" : "Not empty") << std::endl;
     return 0;
 }
