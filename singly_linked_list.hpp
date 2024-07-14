@@ -34,6 +34,10 @@ public:
         tail->next = nullptr;
     }
 
+    bool empty() {
+        return !head;
+    }
+
     template <typename U>
     friend std::ostream& operator<<(std::ostream& os, const SinglyLinkedList<U>& lst);
 
