@@ -34,6 +34,11 @@ public:
         head = next;
         return popped_elem;
     }
+
+    bool empty() {
+        return !head;
+    }
+
     template <typename U>
     friend std::ostream& operator<<(std::ostream& os, const Stack<U>& lst);
 
