@@ -68,6 +68,10 @@ public:
         delete current_node;
     }
 
+    bool empty() {
+        return !head;
+    }
+    
     template <typename U>
     friend std::ostream& operator<<(std::ostream& os, const DoublyLinkedList<U>& lst);
 
