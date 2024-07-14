@@ -1,5 +1,8 @@
 /* An implementation of a stack (singly-linked list variation) */
 
+#ifndef STACK_HPP
+#define STACK_HPP
+
 #include <iostream>
 #include <exception>
 
@@ -67,3 +70,5 @@ std::ostream& operator<<(std::ostream& os, const Stack<T>& lst) {
     os << ")";
     return os;
 }
+
+#endif
