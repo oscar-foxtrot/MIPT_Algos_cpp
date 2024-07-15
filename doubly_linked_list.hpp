@@ -75,7 +75,7 @@ public:
     template <typename U>
     friend std::ostream& operator<<(std::ostream& os, const DoublyLinkedList<U>& lst);
 
-private:
+protected:
     struct Node {
         T value;
         Node* next;
