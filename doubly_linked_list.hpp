@@ -69,7 +69,7 @@ public:
     }
 
     bool empty() {
-        return !head;
+        return !length;
     }
     
     template <typename U>
