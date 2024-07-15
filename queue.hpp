@@ -3,6 +3,8 @@
 #ifndef QUEUE_HPP
 #define QUEUE_HPP
 
+#include <iostream>
+
 #include "singly_linked_list.hpp"
 
 template <typename T>
