@@ -4,6 +4,7 @@
 #define DEQUE_HPP
 
 #include <iostream>
+#include <exception>
 
 #include "doubly_linked_list.hpp"
 
