@@ -4,6 +4,7 @@
 #define QUEUE_HPP
 
 #include <iostream>
+#include <exception>
 
 #include "singly_linked_list.hpp"
 
