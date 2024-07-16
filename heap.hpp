@@ -94,11 +94,18 @@ public:
         return heap.empty();
     }
 
+    // Fix the heap
+    void heapify() {
+        if (heap.size() == 0) {
+            return;
+        }
+        for (size_t i = heap.size(); i > 0; --i) {
+            sift_down(i - 1);
+        }
+    }
+
     template <typename U>
     friend std::ostream& operator<<(std::ostream& os, const Heap<U>& heap);
-    
-    template <typename U>
-    friend heapify(Heap<U> heap);
 };
 
 template <typename T>
