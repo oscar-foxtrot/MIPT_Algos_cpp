@@ -40,6 +40,13 @@ private:
     }
 
 public:
+
+    Heap() {}
+
+    Heap(T* arr, size_t arr_length) {
+        heap = std::vector<T>(arr, arr + arr_length);
+    }
+    
     void insert(const T& value) { // Add to the tail
         heap.push_back(value);
         sift_up(heap.size() - 1);
