@@ -22,7 +22,7 @@ private:
             min = 2 * (index + 1);
         }
 
-        if (heap[index] > heap[min]) {
+        if (heap[min] < heap[index]) {
             std::swap(heap[index], heap[min]);
             sift_down(min);
         }
