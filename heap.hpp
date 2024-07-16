@@ -96,6 +96,9 @@ public:
 
     template <typename U>
     friend std::ostream& operator<<(std::ostream& os, const Heap<U>& heap);
+    
+    template <typename U>
+    friend heapify(Heap<U> heap);
 };
 
 template <typename T>
