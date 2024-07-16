@@ -39,12 +39,23 @@ private:
         }
     }
 
+    // Fix the heap
+    void heapify() {
+        if (heap.size() == 0) {
+            return;
+        }
+        for (size_t i = heap.size(); i > 0; --i) {
+            sift_down(i - 1);
+        }
+    }
+
 public:
 
     Heap() {}
 
     Heap(T* arr, size_t arr_length) {
         heap = std::vector<T>(arr, arr + arr_length);
+        heapify();
     }
     
     void insert(const T& value) { // Add to the tail
@@ -92,16 +103,6 @@ public:
 
     bool empty() {
         return heap.empty();
-    }
-
-    // Fix the heap
-    void heapify() {
-        if (heap.size() == 0) {
-            return;
-        }
-        for (size_t i = heap.size(); i > 0; --i) {
-            sift_down(i - 1);
-        }
     }
 
     template <typename U>
