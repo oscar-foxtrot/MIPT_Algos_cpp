@@ -18,6 +18,8 @@ int main() {
     std::cout << heap << std::endl;
     std::cout << "Extracted min: " << heap.extract_min() << std::endl;
     std::cout << heap << std::endl;
+    heap.heapify();
+    std::cout << heap << std::endl;
     heap.decrease_key(3, 10);
     std::cout << heap << std::endl;
     heap.decrease_key(1, 20);
