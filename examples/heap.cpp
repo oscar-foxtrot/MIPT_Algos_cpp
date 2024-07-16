@@ -3,6 +3,10 @@
 #include "../heap.hpp"
 
 int main() {
+    int arr[] = {4,3,2,1};
+    Heap<int> heap1(arr, 4);
+    std::cout << heap1 << std::endl; // checking heapify
+
     Heap<int> heap;
     heap.insert(10);
     heap.insert(2);
@@ -17,8 +21,6 @@ int main() {
     std::cout << "Extracted min: " << heap.extract_min() << std::endl;
     std::cout << heap << std::endl;
     std::cout << "Extracted min: " << heap.extract_min() << std::endl;
-    std::cout << heap << std::endl;
-    heap.heapify();
     std::cout << heap << std::endl;
     heap.decrease_key(3, 10);
     std::cout << heap << std::endl;
