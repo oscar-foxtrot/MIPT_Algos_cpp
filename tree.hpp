@@ -11,8 +11,8 @@
 template <typename T>
 class Tree: public std::enable_shared_from_this<Tree<T>> {
 private:
-    std::weak_ptr<Tree> parent;
-    std::vector<std::shared_ptr<Tree>> children;
+    std::weak_ptr<Tree<T>> parent;
+    std::vector<std::shared_ptr<Tree<T>>> children;
     T root_value;
 
 public:
@@ -22,7 +22,11 @@ public:
     Tree(const T& value, std::shared_ptr<Tree> parent_ptr): root_value(value), parent(parent_ptr) {}
 
     void add_child(const T& value) {
-        children.push_back(std::make_shared<Tree>(value, get_root()));
+        children.push_back(std::make_shared<Tree<T>>(value, get_root()));
+    }
+
+    void add_child(std::shared_ptr<Tree<T>> tree) {
+        children.push_back(tree);
     }
 
     void remove_child(size_t index) {
