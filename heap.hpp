@@ -63,7 +63,7 @@ public:
         sift_up(heap.size() - 1);
     }
 
-    T get_min() {
+    T get_min() const {
         if (heap.empty()) {
             throw std::out_of_range("Heap<>::get_min(): empty heap");
         }
@@ -97,11 +97,11 @@ public:
         sift_down(index);
     }
 
-    size_t get_length() {
+    size_t get_length() const {
         return heap.size();
     }
 
-    bool empty() {
+    bool empty() const {
         return heap.empty();
     }
 

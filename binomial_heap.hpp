@@ -41,30 +41,32 @@ private:
     }
 
     void sift_up(std::shared_ptr<Tree<T>> tree_node) {
-        if (!tree_node || !tree_node->get_parent().lock()) {
+        if (!tree_node || !tree_node->get_parent()) {
             return;
         }
 
-        if (tree_node->get_parent().lock()->get_value() > tree_node->get_value()) {
+        if (tree_node->get_parent()->get_value() > tree_node->get_value()) {
             // swap
             T temp_val = tree_node->get_value();
-            tree_node->set_value(tree_node->get_parent().lock()->get_value());
-            tree_node->get_parent().lock()->set_value(temp_val);
+            tree_node->set_value(tree_node->get_parent()->get_value());
+            tree_node->get_parent()->set_value(temp_val);
 
-            sift_up(tree_node->get_parent().lock());
+            sift_up(tree_node->get_parent());
         }
     }
 
     // |merge| invalidates the |other| heap
-    void merge(BinomialHeap& other) {
+    void merge(BinomialHeap<T>& other) {
 
         std::shared_ptr<Tree<T>> temporary_tree_ptr = nullptr;
+        size_t temporary_depth;
         BinomialHeap<T> result;
 
-        this_i = 0;
-        other_i = 0;
+        size_t this_i = 0;
+        size_t other_i = 0;
 
-        /*  1. Trees at iterators ARE of equal depth and temporary_tree_ptr ISN'T null? =>
+        /*
+        1. Trees at iterators ARE of equal depth and temporary_tree_ptr ISN'T null? =>
         => temporary_tree_ptr goes into the result and the trees merge into one bigger tree and go into temporary_tree_ptr. Both iterators +1
             2. Trees at iterators ARE of equal depth and temporary_tree_ptr IS null? => 
         => nothing happens to the result and the trees merge into one bigger tree and go into temporary_tree_ptr. Both iterators +1
@@ -77,10 +79,10 @@ private:
                 => temporary tree goes into the result. the shallower tree goes into the result. Iterator of the heap with the "shallower" tree +1
         */
         
-        // TODO: CHECK IF this_i OR other_i ARE VALID AT ALL!!! THEY COULD BE AFTER THE END
-        bool is_end_this, is_end_other;
-        while ((is_end_this = this_i < heap.size()) || (is_end_other = other_i < other.heap.size())) {
-            if (depths[this_i] == other.depths[other_i]) {
+        while ((this_i < heap.size()) || (other_i < other.heap.size())) {
+            bool isnt_end_this = this_i < heap.size();
+            bool isnt_end_other = other_i < other.heap.size();
+            if (isnt_end_this && isnt_end_other && (depths[this_i] == other.depths[other_i])) {
                 if (temporary_tree_ptr) {
                     // case (1)
                     result.heap.push_back(temporary_tree_ptr);
@@ -99,9 +101,9 @@ private:
                 ++this_i;
                 ++other_i;
 
-            } else { // case when depths aren't equal
+            } else { // case when depths aren't equal (or exactly one of the heaps has been fully traversed)
                 if (temporary_tree_ptr) { // case (4)
-                    if (depths[this_i] == temporary_depth) { // case (4.1)
+                    if (isnt_end_this && depths[this_i] == temporary_depth) { // case (4.1)
                         if (temporary_tree_ptr->get_value() < heap[this_i]->get_value()) {
                             temporary_tree_ptr->add_child(heap[this_i]);
                         } else {
@@ -110,7 +112,7 @@ private:
                         }
                         ++this_i;
                         ++temporary_depth;
-                    } else if (other.depths[other_i] == temporary_depth) { // case (4.1) too
+                    } else if (isnt_end_other && other.depths[other_i] == temporary_depth) { // case (4.1) too
                         if (temporary_tree_ptr->get_value() < other.heap[other_i]->get_value()) {
                             temporary_tree_ptr->add_child(other.heap[other_i]);
                         } else {
@@ -122,28 +124,35 @@ private:
                     } else { // case (4.2)
                         result.heap.push_back(temporary_tree_ptr);
                         result.depths.push_back(temporary_depth);
-                        if (depths[this_i] < other.depths[other_i]) {
+                        temporary_tree_ptr = nullptr;
+
+                        if (!isnt_end_other || (isnt_end_this && depths[this_i] < other.depths[other_i])) {  // (also executes if the second one has been fully traversed)
                             result.heap.push_back(heap[this_i]);
                             result.depths.push_back(depths[this_i]);
                             ++this_i;
-                        } else {
+                        } else {  // (also executes if the first one has been fully traversed)
                             result.heap.push_back(other.heap[other_i]);
                             result.depths.push_back(other.depths[other_i]);
                             ++other_i;
                         }
                     }
                 } else { // case (3)
-                    if (depths[this_i] < other.depths[other_i]) {
+                    if (!isnt_end_other || (isnt_end_this && depths[this_i] < other.depths[other_i])) {  // (also executes if the second one has been fully traversed)
                         result.heap.push_back(heap[this_i]);
                         result.depths.push_back(depths[this_i]);
                         ++this_i;
-                    } else {
+                    } else {  // (also executes if the first one has been fully traversed)
                         result.heap.push_back(other.heap[other_i]);
                         result.depths.push_back(other.depths[other_i]);
                         ++other_i;
                     }
                 }
             }
+        }
+
+        if (temporary_tree_ptr) {
+            result.heap.push_back(temporary_tree_ptr);
+            result.depths.push_back(temporary_depth);
         }
         
         // invalidate the heaps
@@ -152,8 +161,8 @@ private:
         other.heap.clear();
         other.depths.clear();
 
-        heap = result.heap();
-        depths = result.depths();
+        heap = result.heap;
+        depths = result.depths;
     }
 
 public:
@@ -163,8 +172,27 @@ public:
         heap.push_back(std::make_shared<Tree<T>>(value));
         depths.push_back(1);
     }
-    // There's no copy constructor!
+    // Note that there's no copy constructor!
+    // And the default one most likely will work in an undesired way
 
+    size_t get_tree_count() const {
+        return heap.size();
+    }
+
+    std::shared_ptr<Tree<T>> get_tree(size_t index) {
+        if (index >= heap.size()) {
+            throw std::out_of_range("BinomailHeap<>::get_tree(): out of range");
+        }
+        return heap[index];
+    }
+
+    size_t get_tree_depth(size_t index) const {
+        if (index >= depths.size()) {
+            throw std::out_of_range("BinomailHeap<>::get_tree_depth(): out of range");
+        }
+        return depths[index];
+    }
+    
     void decrease_key(std::shared_ptr<Tree<T>> tree_node, const T& by_how_much) {
         if (!tree_node) {
             return;
@@ -199,7 +227,35 @@ public:
     }
     
     void insert(const T& value) {
-        // TODO: Track the depths
+        BinomialHeap<T> heap_to_merge(value);
+        merge(heap_to_merge);
+    }
+
+    T extract_min() {
+        if (heap.empty()) {
+            throw std::out_of_range("BinomialHeap<>::extract_min(): empty heap");
+        }
+        size_t min = 0;
+        for (size_t i = 1; i < heap.size(); ++i) {
+            if (heap[i]->get_value() < heap[min]->get_value()) {
+                min = i;
+            }
+        }
+        T returned_element = heap[min]->get_value();
+        
+        BinomialHeap<T> heap_to_merge;
+
+        for (size_t i = 0; i < heap[min]->get_children_count(); ++i) {
+            heap_to_merge.heap.push_back(heap[min]->get_child(i));
+            heap_to_merge.depths.push_back(i + 1);
+        }
+
+        heap.erase(heap.begin() + min);
+        depths.erase(depths.begin() + min);
+
+        merge(heap_to_merge);
+
+        return returned_element;
     }
 };
 
